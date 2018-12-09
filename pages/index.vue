@@ -17,6 +17,8 @@
           href="https://github.com/nuxt/nuxt.js"
           target="_blank"
           class="button--grey">GitHub</a>
+          <textarea v-model="formula" cols="30" rows="10"></textarea>
+          <vue-mathjax :formula="formula"></vue-mathjax>          
       </div>
     </div>
   </section>
@@ -24,10 +26,20 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
-
+import { VueMathjax } from 'vue-mathjax'
 export default {
   components: {
-    Logo
+    Logo,
+    'vue-mathjax': VueMathjax
+  },  
+  data () {
+    return {
+      formula: '$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$',
+      msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  created(){
+
   }
 }
 </script>

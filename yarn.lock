@@ -5912,6 +5912,10 @@ vue-loader@^15.4.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
+vue-mathjax@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/vue-mathjax/-/vue-mathjax-0.0.5.tgz#6eff2f814df33529af0f9a229aa48284ae0b3ed0"
+
 vue-meta@^1.5.6:
   version "1.5.6"
   resolved "https://registry.yarnpkg.com/vue-meta/-/vue-meta-1.5.6.tgz#8c6e56e560217c63637bb9ed66434df15c162057"
