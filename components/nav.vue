@@ -36,6 +36,23 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
+  .navigater{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 60px;
+    section.left{
+      width: 75%;
+      ul{
+        display: flex;
+        >li{
 
+        }  
+      }
+    }
+    section.right{
+      flex-grow: 1;
+    }
+  }
 </style>
