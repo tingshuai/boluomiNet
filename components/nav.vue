@@ -26,8 +26,7 @@ export default {
   },  
   data () {
     return {
-      formula: '$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$',
-      msg: 'Welcome to Your Vue.js App'
+     
     }
   },
   created(){
@@ -36,7 +35,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style scope lang="less">
   .navigater{
     display: flex;
     justify-content: space-between;
@@ -58,11 +57,11 @@ export default {
     }
   }
   .navList{
-        display: flex;
-        height: 100%;
-        align-items: center;
-        >li{
-          padding: 0 10px;
-        }
+    display: flex;
+    height: 100%;
+    align-items: center;
+    >li{
+      padding: 0 10px;
+    }
   }
 </style>

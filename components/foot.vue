@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style scope lang="less">
   .recordMsg{
     text-align: center;
     font-size: 13px;

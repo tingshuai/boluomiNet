@@ -1,9 +1,9 @@
 <template>
-  <div class="">
+  <div class="classification">
       <section class="part part1">
           <span class="title">级别</span>
           <ul class="lists">
-              <li>高一</li>
+              <li class="act">高一</li>
               <li>高二</li>
               <li>高三</li>
           </ul>
@@ -20,17 +20,32 @@
             <span class="title">章节</span>
             <ul class="lists">
               <li>三角函数</li>
-              <li>立体几何</li>
+              <li class="act">立体几何</li>
               <li>不等式</li>
               <li>虚数</li>
               <li>集合</li>
+              <li>不等式</li>
+              <li>虚数</li>
+              <li>集合</li>
+                            <li>不等式</li>
+              <li>虚数</li>
+              <li>集合</li>
+                            <li>不等式</li>
+              <li>虚数</li>
+              <li>集合</li>
+                            <li>不等式</li>
+              <li>虚数</li>
+              <li>集合</li>
+                            <li>不等式</li>
+              <li>虚数</li>
+              <li>集合</li>              
             </ul>
       </section>
       <section class="part part4">
             <span class="title">难度</span>
             <ul class="lists">
               <li>简单</li>
-              <li>中等</li>
+              <li class="act">中等</li>
               <li>较难</li>
             </ul>
       </section>
@@ -52,10 +67,42 @@ export default {
 }
 </script>
 
-<style lang="less">
-  .recordMsg{
-    text-align: center;
-    font-size: 13px;
-    color: #333;
+<style lang="less" scope>
+@color:#333;
+@colorLight:#42d29d;
+@background-color:#A5AA3F;
+.part{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+.title{
+  flex-basis: 100px;
+  text-align: right;
+  font-size: 20px;
+  color: @color;
+  margin-right: 20px;
+}
+.lists{
+  text-align: left;
+  flex-grow: 1;
+  flex-basis: 1px;
+  >li{
+    display: inline-block;
+    cursor: pointer;
+    font-size: 16px;
+    color: @color;
+    height: 27px;
+    line-height: 23px;
+    margin: 6px 6px;
+    padding: 0px 8px;
   }
+  >li.act{
+    color:@colorLight;
+    border: 1px solid @colorLight;
+    border-radius: 5px;
+  }
+}
 </style>
