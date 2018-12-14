@@ -1,17 +1,17 @@
 <template>
   <div class="navigater">
       <section class="left navBar">
-          <ul>
-              <li>首页</li>
-              <li>课程</li>
-              <li>试题</li>
-              <li>出题</li>
+          <ul class="navList">
+              <li><nuxt-link to="/">首页</nuxt-link></li>
+              <li><nuxt-link to="/course">课程</nuxt-link></li>
+              <li><nuxt-link to="/test">试题</nuxt-link></li>
+              <li><nuxt-link to="/addTestPaper">出题</nuxt-link></li>
           </ul>
       </section>
       <section class="right navBar">
-          <ul>
-              <li>购物车</li>
-              <li>我</li>
+          <ul class="navList">
+              <li><nuxt-link to="/shoppingCar">购物车</nuxt-link></li>
+              <li><nuxt-link to="/me">我</nuxt-link></li>
           </ul>
       </section>
   </div>
@@ -45,14 +45,24 @@ export default {
     section.left{
       width: 75%;
       ul{
-        display: flex;
-        >li{
 
+        >li{
         }  
       }
     }
     section.right{
       flex-grow: 1;
+      ul{
+        flex-direction: row-reverse;
+      }
     }
+  }
+  .navList{
+        display: flex;
+        height: 100%;
+        align-items: center;
+        >li{
+          padding: 0 10px;
+        }
   }
 </style>

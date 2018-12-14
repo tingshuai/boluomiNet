@@ -1,6 +1,6 @@
 <template>
   <div class="foot">
-      我是底部...
+      <p class="recordMsg">Copyright © 2018 imooc.com All Rights Reserved | 京ICP备</p>
   </div>
 </template>
 <script>
@@ -19,6 +19,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="less">
+  .recordMsg{
+    text-align: center;
+    font-size: 13px;
+    color: #333;
+  }
 </style>
