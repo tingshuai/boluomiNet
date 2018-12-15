@@ -35,7 +35,7 @@ export default {
 }
 </script>
 
-<style scope lang="less">
+<style lang="less" scoped>
   .navigater{
     display: flex;
     justify-content: space-between;
