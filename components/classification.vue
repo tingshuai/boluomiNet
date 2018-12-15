@@ -67,10 +67,10 @@ export default {
 }
 </script>
 
-<style lang="less" scope>
+<style lang="less" scoped>
 @color:#333;
 @colorLight:#42d29d;
-@background-color:#A5AA3F;
+@backgroundColor:#A5AA3F;
 .part{
   display: flex;
   justify-content: space-between;
@@ -84,7 +84,7 @@ export default {
   font-size: 20px;
   color: @color;
   margin-right: 20px;
-  line-height: 35px;
+  padding-top: 4px;
 }
 .lists{
   text-align: left;
@@ -93,17 +93,17 @@ export default {
   >li{
     display: inline-block;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     color: @color;
     height: 27px;
-    line-height: 23px;
+    line-height: 25px;
     margin: 6px 6px;
     padding: 0px 8px;
   }
   >li.act{
     color:@colorLight;
     border: 1px solid @colorLight;
-    border-radius: 2px;
+    border-radius: 13px;
   }
 }
 </style>
