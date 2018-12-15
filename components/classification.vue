@@ -84,6 +84,7 @@ export default {
   font-size: 20px;
   color: @color;
   margin-right: 20px;
+  line-height: 35px;
 }
 .lists{
   text-align: left;
@@ -102,7 +103,7 @@ export default {
   >li.act{
     color:@colorLight;
     border: 1px solid @colorLight;
-    border-radius: 5px;
+    border-radius: 2px;
   }
 }
 </style>
