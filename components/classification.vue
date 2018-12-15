@@ -103,7 +103,7 @@ export default {
   >li.act{
     color:@colorLight;
     border: 1px solid @colorLight;
-    border-radius: 13px;
+    border-radius: 4px;
   }
 }
 </style>
