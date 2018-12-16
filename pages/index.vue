@@ -47,6 +47,12 @@ export default {
       
     }
   },
+async asyncData({ $axios }) {
+  // const ip = await $axios.$get('http://localhost:3000/static/api/home/menuList/').then((res)=>{
+  //   console.log(res);
+  // })
+  return { ip }
+},
   created(){
 
   }
