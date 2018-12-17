@@ -37,24 +37,40 @@
 
 <script>
 import classification from '~/components/classification.vue'
-
+import '@/static/api/home'
+import axios from 'axios'
 export default {
   components: {
     classification
-  },  
+  },
   data () {
     return {
       
     }
   },
-async asyncData({ $axios }) {
-  // const ip = await $axios.$get('http://localhost:3000/static/api/home/menuList/').then((res)=>{
-  //   console.log(res);
-  // })
-  return { ip }
-},
+  async asyncData({ $axios }) {
+    console.log("1");
+    const ip = await $axios.$get('http://icanhazip.com').catch((res)=>{
+      console.log(res);
+    })
+    console.log(ip);
+    console.log("2");
+    return { ip }
+  },
   created(){
 
+  },
+  mounted(){
+    axios.get('/api/home/menuList', {
+      firstName: 'Fred',
+      lastName: 'Flintstone'
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });    
   }
 }
 </script>

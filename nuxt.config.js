@@ -39,8 +39,7 @@ module.exports = {
   */
   plugins: [
     '@/plugins/element-ui',
-    {src:'@/plugins/mathjax',ssr:false},
-    {src:'@/plugins/mock',ssr:false}
+    {src:'@/plugins/mathjax',ssr:false}
   ],
 
   /*
@@ -54,10 +53,11 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-    baseURL:"https://localhost:3000/api/",
-    https:true,
-
+    prefix: '/api/',
+    proxy: true // Can be also an object with default options
+  },
+  proxy: {
+    '/api/': { target: 'http://localhost:3000', pathRewrite: {'^/api/': ''} }
   },
 
   /*
