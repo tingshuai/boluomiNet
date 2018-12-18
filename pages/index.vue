@@ -7,26 +7,21 @@
         <aside class="item act">最热</aside>
       </section>
       <ul class="course">
-        <li class="courseList">
+        <li class="courseList" v-for="( item,index) in filterList" v-bind:key="index">
           <aside class="left">
             <figure>
-              <img src="~/assets/img/head.jpg" width="350" height="234" />
+              <img :src="item.headImg" width="350" height="234" />
               <figcaption>黄浦江上的的卢浦大桥</figcaption>
             </figure>
             <div class="teachMsg">
-              <section class="t1 title"><span class="tit">试题：</span><span class="val">33套</span></section>
-              <section class="t2 title"><span class="tit">章节：</span><span class="val">23课时</span></section>
-              <section class="t2 title"><span class="tit">学员：</span><span class="val">233人</span></section>
+              <section class="t1 title"><span class="tit">试题：</span><span class="val">{{ item.tests }}套</span></section>
+              <section class="t2 title"><span class="tit">章节：</span><span class="val">{{ item.chapter }}课时</span></section>
+              <section class="t2 title"><span class="tit">学员：</span><span class="val">{{ item.students }}人</span></section>
             </div>
           </aside>
           <aside class="right">
             <ul class="t3">
-              <li>二元一次不等式</li>
-              <li>立体几何</li>
-              <li>三角函数</li>
-              <li>数列</li>
-              <li>不等式</li>
-              <li>泛函</li>
+              <li v-for="(it,i) in item.chapterType" v-bind:key="i">{{ it }}</li>
             </ul>
           </aside>
         </li>
@@ -45,7 +40,7 @@ export default {
   },
   data () {
     return {
-      
+      filterList:[]
     }
   },
   async asyncData({ $axios }) {
@@ -61,12 +56,8 @@ export default {
 
   },
   mounted(){
-    axios.get('/api/home/menuList', {
-      firstName: 'Fred',
-      lastName: 'Flintstone'
-    })
-    .then(function (response) {
-      console.log(response);
+    axios.get('/api/home/filterList').then((res)=>{
+      this.filterList = res.data.data;
     })
     .catch(function (error) {
       console.log(error);
@@ -118,10 +109,10 @@ export default {
     flex-wrap: wrap;
     >li.courseList{
       width: 250px;
-      margin: 15px 15px;
+      margin: 15px 0px;
       height: 178px;
       border: 1px solid @borderColor;
-      border-radius: 12px;
+      border-radius: 4px;
       overflow: hidden;
       padding: 10px 10px;
       transition: all @time;
@@ -143,6 +134,7 @@ export default {
           width: 80px;
           height: 80px;
           overflow: hidden;
+          border-radius: 7px;
           >img{
             width: 100%;
             height: auto;
