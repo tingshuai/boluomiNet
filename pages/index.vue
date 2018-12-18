@@ -25,8 +25,20 @@
             </ul>
           </aside>
         </li>
+        <li class="courseList" style="height:0;padding:0;opacity:0;"></li>
+        <li class="courseList" style="height:0;padding:0;opacity:0;"></li>
       </ul>
     </div>
+
+    <div class="part boutiqueTest">
+      <section class="title">套题优选</section>
+      <ul class="course">
+        <li class="courseList"></li>
+        <li class="courseList"></li>
+        <li class="courseList"></li>
+      </ul>
+    </div>
+
   </section>
 </template>
 
