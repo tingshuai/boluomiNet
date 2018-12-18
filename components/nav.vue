@@ -2,16 +2,16 @@
   <div class="navigater">
       <section class="left navBar">
           <ul class="navList">
-              <li><nuxt-link to="/">首页</nuxt-link></li>
-              <li><nuxt-link to="/course">课程</nuxt-link></li>
-              <li><nuxt-link to="/test">试题</nuxt-link></li>
-              <li><nuxt-link to="/addTestPaper">出题</nuxt-link></li>
+              <li><nuxt-link class="link act" to="/">首页</nuxt-link></li>
+              <li><nuxt-link class="link" to="/course">课程</nuxt-link></li>
+              <li><nuxt-link class="link" to="/test">试题</nuxt-link></li>
+              <li><nuxt-link class="link" to="/addTestPaper">出题</nuxt-link></li>
           </ul>
       </section>
       <section class="right navBar">
           <ul class="navList">
-              <li><nuxt-link to="/shoppingCar">购物车</nuxt-link></li>
-              <li><nuxt-link to="/me">我</nuxt-link></li>
+              <li><nuxt-link class="link" to="/shoppingCar">购物车</nuxt-link></li>
+              <li><nuxt-link class="link" to="/me">我</nuxt-link></li>
           </ul>
       </section>
   </div>
@@ -36,13 +36,22 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@color:#333;
+@colorLight:#42d29d;
+@backgroundColor:#A5AA3F;
+@borderColor:#ddd;
+@time:0.3s;
   .navigater{
     display: flex;
     justify-content: space-between;
     align-items: stretch;
     height: 60px;
+    background-color: @colorLight;
+    >section{
+      padding: 0 8vw;
+    }
     section.left{
-      width: 75%;
+      flex-grow: 1.5;
       ul{
 
         >li{
@@ -60,8 +69,28 @@ export default {
     display: flex;
     height: 100%;
     align-items: center;
+    .link{
+      color:white;
+      display: block;
+      height: 100%;
+    }
+    .act{
+      color: @color;
+      &:after{
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0px;
+        width: 110%;
+        left: -5%;
+        border-bottom: 2px solid @color;
+      }
+    }
     >li{
-      padding: 0 10px;
+      margin: 0 10px;
+      position: relative;
+      height: 100%;
+      line-height: 60px;
     }
   }
 </style>

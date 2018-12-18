@@ -81,6 +81,11 @@ export default {
 @backgroundColor:#A5AA3F;
 @borderColor:#ddd;
 @time:0.3s;
+.container{
+  max-width: 1100px;
+  width: 80%;
+  margin: 0 auto;
+}
 .part{
 }
 .new_hot{
