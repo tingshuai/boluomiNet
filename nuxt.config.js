@@ -15,10 +15,12 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', type:'text/css',href:'/css/common.css'}
+      { rel: 'stylesheet', type:'text/css',href:'/css/common.css'},
+      { rel: 'stylesheet', type:'text/css',href:'./icon/iconfont.css'},
     ],
     script: [
-      { src: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML", type: 'text/javascript'}
+      { src: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML", type: 'text/javascript'},
+      { src: "./icon/iconfont.js", type: 'text/javascript'}
     ]
   },
 

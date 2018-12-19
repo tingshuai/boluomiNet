@@ -7,7 +7,7 @@
         <aside class="item act">最热</aside>
       </section>
       <ul class="course">
-        <li class="courseList" v-for="( item,index) in filterList" v-bind:key="index">
+        <li class="courseList" v-for="( item,index) in filterList" v-bind:key="item.id">
           <aside class="left">
             <figure>
               <img :src="item.headImg" width="350" height="234" />
@@ -31,14 +31,142 @@
     </div>
 
     <div class="part boutiqueTest">
-      <section class="title">套题优选</section>
-      <ul class="course">
-        <li class="courseList"></li>
-        <li class="courseList"></li>
-        <li class="courseList"></li>
+      <section class="title">
+        <span><i class="iconfont icon-qingchunhouyuan"  v-for="(item,index) in 3" :key="index"></i></span>
+        &nbsp;
+        <span class="tt">套题优选</span>
+        &nbsp;
+        <span><i class="iconfont icon-qingchunhouyuan" v-for="(it,i) in 3" :key="i"></i></span>
+      </section>
+      <ul class="test">
+        <li class="testList" v-for="(item,index) in testList" :key="index">
+          <section class="img">
+            <div class="wrapImg">
+              <img :src="item.img"></img>
+            </div>
+            <div class="labelList">
+              <i class="iconfont" :class="item.sex == 0 ? 'icon-laoshi' : 'icon-jiaoshou1'"></i>
+              <span class="label">{{ item.teachMsg }}</span>
+            </div>
+          </section>
+          <section class="msg">
+            <div class="t1">
+              <i class="iconfont icon-qingchunlianghong-renshu"></i>
+              <span class="number">{{ item.students }}已学</span>&nbsp;&nbsp;
+              <i class="iconfont icon-shijuanku"></i>
+              <span class="number">{{ item.tests }}套</span>&nbsp;&nbsp;            
+              <span class="hard">{{ item.difficulty == 0 ? "初级" : item.difficulty == 1 ? "中级" : "高级" }}</span>
+            </div>
+            <div class="t2">
+              <i class="iconfont icon-xingzhuang60kaobei2" v-for="(it,i) in item.star" :key="i"></i>
+            </div>
+          </section>
+        </li>
+        <li class="testList" style="height:0;padding:0;opacity:0;"></li>
+        <li class="testList" style="height:0;padding:0;opacity:0;"></li>
       </ul>
+    </div><!--套题优选-->
+    <div class="part superStar">
+      <section class="title">
+        <span><i class="iconfont icon-lizhi1"  v-for="(item,index) in 3" :key="index"></i></span>
+        &nbsp;
+        <span class="tt">周排行榜top10</span>
+        &nbsp;
+        <span><i class="iconfont icon-lizhi1" v-for="(it,i) in 3" :key="i"></i></span>
+      </section>
+      <section class="ranking">
+        <ul class="progress">
+          <li>进步榜</li>
+          <li v-for="(item ,index) in progressPrize" :key="index">
+            <span class="index">{{ index + 1 }}</span>
+            <section class="headImg">
+              <img class="hImg" :src="item.headImg" alt=""> 
+            </section>
+            <section class="studMsg">
+              <div class="school">{{item.name}}</div>
+              <div class="school">{{item.school}}</div>
+            </section>
+            <svg class="icon" aria-hidden="true" v-if="index == 0">
+              <use xlink:href="#icon-guanjun3"></use>
+            </svg>
+            <svg class="icon" aria-hidden="true" v-else-if="index == 1">
+              <use xlink:href="#icon-yajun1"></use>
+            </svg>
+            <svg class="icon" aria-hidden="true" v-else-if="index == 2">
+              <use xlink:href="#icon-jijun1"></use>
+            </svg>
+            <svg class="icon" aria-hidden="true" v-else style="font-size:35px;">
+              <use xlink:href="#icon-xianhua-"></use>
+            </svg>
+          </li>
+        </ul>
+        <aside class="line"></aside>
+        <ul class="progress">
+          <li>刷题榜</li>
+          <li v-for="(item ,index) in testPrize" :key="index">
+            <span class="index">{{ index + 1 }}</span>
+            <section class="headImg">
+              <img class="hImg" :src="item.headImg" alt="">           
+            </section>
+            <section class="studMsg">
+              <div class="school">{{item.name}}</div>
+              <div class="school">{{item.school}}</div>
+            </section>
+            <svg class="icon" aria-hidden="true" v-if="index == 0">
+              <use xlink:href="#icon-guanjun2"></use>
+            </svg>
+            <svg class="icon" aria-hidden="true" v-else-if="index == 1">
+              <use xlink:href="#icon-yajun3"></use>
+            </svg>
+            <svg class="icon" aria-hidden="true" v-else-if="index == 2">
+              <use xlink:href="#icon-jijun3"></use>
+            </svg>
+            <svg class="icon" aria-hidden="true" v-else style="font-size:35px;">
+              <use xlink:href="#icon-xianhualipin"></use>
+            </svg>
+            <i class="iconfont arow icon-xiangshang1" v-if="item.isRise"></i>
+            <i class="iconfont arow icon-xiangxia" v-else style="color:#f78989;"></i>               
+          </li>
+        </ul>
+        <aside class="line"> </aside>
+        <ul class="progress">
+          <li>总分榜</li>
+          <li v-for="(item ,index) in totalPrize" :key="index">
+            <span class="index">{{ index + 1 }}</span>
+            <section class="headImg">
+              <img class="hImg" :src="item.headImg" alt="">
+              <svg class="icon huangguan" aria-hidden="true" v-if="index == 0">
+                <use xlink:href="#icon-guanjun4"></use>
+              </svg>
+              <svg class="icon huangguan" aria-hidden="true" v-else-if="index == 1">
+                <use xlink:href="#icon-yajun-copy-copy"></use>
+              </svg>      
+              <svg class="icon huangguan" aria-hidden="true" v-else-if="index == 2">
+                <use xlink:href="#icon-jijun5"></use>
+              </svg>                    
+            </section>
+            <section class="studMsg">
+              <div class="school">{{item.name}}</div>
+              <div class="school">{{item.school}}</div>
+            </section>
+            <svg class="icon" aria-hidden="true" v-if="index == 0">
+              <use xlink:href="#icon-guanjun2"></use>
+            </svg>
+            <svg class="icon" aria-hidden="true" v-else-if="index == 1">
+              <use xlink:href="#icon-yajun3"></use>
+            </svg>
+            <svg class="icon" aria-hidden="true" v-else-if="index == 2">
+              <use xlink:href="#icon-jijun3"></use>
+            </svg>
+            <svg class="icon" aria-hidden="true" v-else style="font-size:35px;">
+              <use xlink:href="#icon-laoshirenzheng"></use>
+            </svg>
+            <i class="iconfont arow icon-xiangshang1" v-if="item.isRise"></i>
+            <i class="iconfont arow icon-xiangxia" v-else style="color:#f78989;"></i>                   
+          </li>
+        </ul>        
+      </section>
     </div>
-
   </section>
 </template>
 
@@ -52,7 +180,11 @@ export default {
   },
   data () {
     return {
-      filterList:[]
+      filterList:[],//
+      testList:[],//试题列表
+      progressPrize:[],//进步榜
+      testPrize:[],//刷题榜...
+      totalPrize:[],//总分榜
     }
   },
   async asyncData({ $axios }) {
@@ -73,7 +205,31 @@ export default {
     })
     .catch(function (error) {
       console.log(error);
-    });    
+    });
+    axios.get('/api/home/testList').then((res)=>{
+      this.testList = res.data.data;
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+    axios.get('/api/home/progressPrize').then((res)=>{
+      this.progressPrize = res.data.data;
+    })
+    .catch((error)=>{
+      console.log(error);
+    });  
+    axios.get('/api/home/testPrize').then((res)=>{
+      this.testPrize = res.data.data;
+    })
+    .catch((error)=>{
+      console.log(error);
+    }); 
+    axios.get('/api/home/totalPrize').then((res)=>{
+      this.totalPrize = res.data.data;
+    })
+    .catch((error)=>{
+      console.log(error);
+    });                      
   }
 }
 </script>
@@ -83,6 +239,7 @@ export default {
 @colorLight:#42d29d;
 @backgroundColor:#A5AA3F;
 @borderColor:#ddd;
+@gray:#93999F;
 @time:0.3s;
 .container{
   max-width: 1100px;
@@ -90,6 +247,111 @@ export default {
   margin: 0 auto;
 }
 .part{
+}
+.superStar{
+  text-align: center;
+  font-size: 20px;
+  .title{
+    margin: 50px 0;
+    .iconfont{
+      font-size: 14px;
+      color: @colorLight;
+    }
+  }
+  .tt{
+    color: @color;
+    font-size: 24px;
+  }  
+}
+.ranking{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .line{
+    border-right: 1px solid @borderColor;
+    height: 700px;
+    top: 70px;
+    position: relative;
+    opacity: 0.7;
+  }
+  >ul{
+    width: 280px;
+    >li{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      height: 70px;
+      border-bottom: 1px solid @borderColor;
+      padding: 10px 0;
+      align-content: center;
+      align-items: center;
+      .arow{
+        color:@colorLight;
+        font-size: 23px;
+        width: 10px;
+      }
+      .headImg{
+        height: 100%;
+        width: 50px;
+        position:relative;
+        flex-basis:50px;
+        .hImg{
+          height:100%;
+          width:100%;
+          border-radius: 5px;
+        }
+        .huangguan{
+          position: absolute;
+          top: -24px;
+          left: -20px;
+          z-index: 11;
+          font-size: 43px;
+        }
+      }
+      .index{
+        width: 25px;
+        line-height: 25px;
+        font-size: 15px;
+        color: @color;
+        background-color:@colorLight;
+        height: 25px;
+        border-radius: 50%;
+        text-align: center;
+        margin-right: 5px;
+        color: white;
+      }
+      .studMsg{
+        flex-grow: 1;
+        height: 100%;
+      }
+      .school{
+        padding-left: 10px;
+        font-size: 13px;
+        color: @color;
+        margin-top: 5px;
+        text-align: left;   
+        &:last-child{
+          font-size:12px;
+          color:@gray;
+        }     
+      }
+      .icon{
+        line-height: 50px;
+        font-size: 40px;
+        top: 2px;
+        position: relative;        
+      }
+      &:first-child{
+        text-align: center;
+        height: 60px;
+        color: @colorLight;
+        font-size: 18px;
+        border-bottom: 1px solid rgba(0,0,0,0);
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
 }
 .new_hot{
   section.type{
@@ -177,6 +439,87 @@ export default {
             border-radius: 7px;
           }
         }
+      }
+    }
+  }
+}
+.boutiqueTest{
+    text-align: center;
+    font-size: 20px;
+    .title{
+      margin: 50px 0;
+      .iconfont{
+        font-size: 28px;
+        color: @colorLight;
+      }
+    }
+    .tt{
+      color: @color;
+      font-size: 24px;
+    }
+}
+ul.test{
+  text-align: left;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap: wrap;
+  >li.testList{
+    height: 300px;
+    width: 250px;
+    padding: 0 10px;
+    &:hover{
+      cursor: pointer;
+      .labelList{
+          color: @colorLight;
+      }
+    }
+    .msg{
+      height: 60px;
+      line-height: 30px;
+      .icon{
+        width: 20px;
+        height: 20px;
+        position: relative;
+        top: 5px;
+        color: red;
+      }
+      .t1,.t2{
+        height: 30px;
+        color: @gray;
+        font-size: 13px;
+      }
+      .t1{
+
+      }
+      .t2{
+        .iconfont{
+          color: @colorLight;
+        }
+      }
+    }
+    .wrapImg{
+      width: 100%;
+      height: 150px;
+      overflow: hidden;
+      border: 1px solid @borderColor;
+      border-radius: 5px;
+      >img{
+        height: auto;
+        width: 100%;
+      }
+    }
+    .labelList{
+      height: 30px;
+      line-height: 30px;
+      font-size: 14px;
+      color: @color;
+      transition: all @time;
+      .icon{
+        width: 20px;
+        height: 20px;
+        top: 5px;
+        display: inline-block;
+        position: relative;
       }
     }
   }
