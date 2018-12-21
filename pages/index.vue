@@ -66,6 +66,26 @@
         <li class="testList" style="height:0;padding:0;opacity:0;"></li>
       </ul>
     </div><!--套题优选-->
+    
+    <div class="part superTeachers">
+      <section class="title">
+        <span><i class="iconfont icon-lizhi1"  v-for="(item,index) in 3" :key="index"></i></span>
+        &nbsp;
+        <span class="tt">远方名师阵营</span>
+        &nbsp;
+        <span><i class="iconfont icon-lizhi1" v-for="(it,i) in 3" :key="i"></i></span>
+      </section>
+      <el-carousel indicator-position="outside" trigger="click" height="250px" class="carousel" :interval="5000" arrow="always">
+        <el-carousel-item class="carouselItem" v-for="(item,index) in carouselImg" :key="index">
+          <div class="carouselIt" v-for="(it,i) in item" :key="i">
+            <img :src="it.img" alt="">
+            <div class="tit">{{ it.name }}</div>
+            <p>{{ it.teachMsg.length > 85 ? it.teachMsg.slice(0,85) + ' . . .' : it.teachMsg }}</p>
+          </div>
+        </el-carousel-item>
+      </el-carousel>
+    </div>
+
     <div class="part superStar">
       <section class="title">
         <span><i class="iconfont icon-lizhi1"  v-for="(item,index) in 3" :key="index"></i></span>
@@ -185,6 +205,7 @@ export default {
       progressPrize:[],//进步榜
       testPrize:[],//刷题榜...
       totalPrize:[],//总分榜
+      carouselImg:[],//名师轮播图....
     }
   },
   async asyncData({ $axios }) {
@@ -229,7 +250,14 @@ export default {
     })
     .catch((error)=>{
       console.log(error);
-    });                      
+    });
+    axios.get('/api/home/carouselImg').then((res)=>{
+      this.carouselImg = res.data.data;
+      console.log(this.carouselImg);
+    })
+    .catch((error)=>{
+      console.log(error);
+    });       
   }
 }
 </script>
@@ -242,13 +270,76 @@ export default {
 @gray:#93999F;
 @time:0.3s;
 .container{
+
+}
+
+.part{
+}
+.superTeachers{
+  background: url('https://www.imooc.com/static/img/index/eliteTbg.jpg');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  padding:10px 0 80px 0;
+  .tt{
+    color: white!important;
+  }
+}
+.classification,.new_hot,.boutiqueTest,.superStar,.carousel{
   max-width: 1100px;
   width: 80%;
   margin: 0 auto;
 }
-.part{
+.carousel{
+  .carouselItem{
+    display: flex;
+    justify-content: space-between;
+  }
+  .carouselIt{
+    background-color: @borderColor;
+    border-radius: 5px;
+    flex-basis: 18%;
+    padding: 10px 10px;
+    img,p,.tit{
+      transition: all @time;
+    }
+    .tit{
+      font-size: 15px;
+      color: @color;
+    }
+    &:hover{
+      cursor: pointer;
+      img{
+        width: 50px;
+        height: 50px;
+        border: 1px solid @colorLight;
+      }
+      p{
+        height: 180px;
+        opacity: 1;
+      }
+      .tit{
+        color: @colorLight;
+      }
+    }
+    img{
+      border: 1px solid @gray;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+    }
+    p{
+      font-size: 13px;
+      line-height: 23px;
+      color: @color;
+      text-align: left;
+      text-indent: 20px;
+      height: 155px;
+      overflow: hidden;
+      opacity: 0.7;
+    }
+  } 
 }
-.superStar{
+.superStar,.superTeachers{
   text-align: center;
   font-size: 20px;
   .title{
