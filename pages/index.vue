@@ -229,7 +229,9 @@ export default {
     })
     .catch((error)=>{
       console.log(error);
-    });                      
+    });       
+    console.log( document.getElementsByTagName('body')[0].innerHTML);
+                   
   }
 }
 </script>
