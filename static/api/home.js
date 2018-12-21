@@ -157,3 +157,37 @@ let total = ()=>{
   })
 }
 total();//总分榜..
+
+
+let carouselImg = ()=>{
+  let filterList = [];
+  let i = 0;
+  let n = random.integer( 0, 2 )
+  let teach;
+  if( n == 0 ){
+    teach = "数学老师"
+  }else if( n == 1 ){
+    teach == "物理老师"
+  }else{
+    teach == "化学老师"
+  }
+  let _item = [];
+  for(var m = 0; m<5;m++){
+    _item.push({
+      id:i,
+      img:random.image("80","#ddd","\u56fe\u7247"),
+      name:random.cname(),
+      position:teach,
+      teachMsg:random.cparagraph( 6 ,10 )
+    })
+  }
+  for( i; i < 3; i++ ){
+    filterList.push(_item)
+  }
+  Mock.mock("/api/home/carouselImg","get",{
+    code:0,
+    data:filterList,
+    msg:"success"
+  })
+}
+carouselImg();//总分榜..

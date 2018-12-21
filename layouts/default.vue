@@ -2,7 +2,7 @@
   <div>
     <nav-bar></nav-bar>
     <nuxt/>
-    <foot></foot>
+    <foot class="footer"></foot>
   </div>
 </template>
 <script>
@@ -23,5 +23,12 @@ export default {
 }
 </script>
 <style scoped lang="less">
-
+@color:#333;
+@colorLight:#42d29d;
+@backgroundColor:#A5AA3F;
+@borderColor:#ddd;
+@gray:#93999F;
+.footer{
+    background-color: @colorLight;
+}
 </style>
