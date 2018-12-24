@@ -20,6 +20,7 @@ module.exports = {
     ],
     script: [
       { src: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML", type: 'text/javascript'},
+      { src: "https://cdnjs.cloudflare.com/ajax/libs/mathjax-mhchem/3.3.0/mhchem.js", type: 'text/javascript'},
       { src: "./icon/iconfont.js", type: 'text/javascript'}
     ]
   },
@@ -41,7 +42,8 @@ module.exports = {
   */
   plugins: [
     '@/plugins/element-ui',
-    {src:'@/plugins/mathjax',ssr:false}
+    {src:'@/plugins/mathjax',ssr:false},
+    {src:'@/plugins/vuescroll',ssr:true}
   ],
 
   /*

@@ -6290,6 +6290,10 @@ vue@^2.5.17:
   version "2.5.18"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.18.tgz#885586eda5c8efc77140a497500b73620e53c1dd"
 
+vuescroll@^4.9.2:
+  version "4.9.2"
+  resolved "https://registry.yarnpkg.com/vuescroll/-/vuescroll-4.9.2.tgz#b910583f08d4a2cde2b851f0811e137fa2ba6a30"
+
 vuex@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.0.1.tgz#e761352ebe0af537d4bb755a9b9dc4be3df7efd2"

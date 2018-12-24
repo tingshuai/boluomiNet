@@ -29,11 +29,13 @@
         </li>                             
       </ul>
     </section>
-    <section class="content">
-      <div class="canvas">
-        <textarea v-model="formula" cols="30" rows="10"></textarea>
-        <vue-mathjax :formula="formula"></vue-mathjax>
-      </div>
+    <section class='parent-dom'>
+      <vue-scroll :ops="ops">
+        <div class='child-dom'>
+          <textarea v-model="formula" cols="30" rows="10"></textarea>
+          <vue-mathjax :formula="formula"></vue-mathjax>
+        </div>
+      </vue-scroll>
     </section>
   </section>
 </template>
@@ -48,34 +50,47 @@ export default {
     'vue-mathjax': VueMathjax
   },  
   async asyncData({ $axios }) {
-  },  
+
+  },
   data () {
     return {
       formula: "",
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      ops:{
+        
+      }
     }
   },
   created(){
   },
   mounted(){
-    this.formula = '$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$';
+    this.formula =  "$$\\ce{\\frac{[Hg^2+][Hg]}{[Hg2^2+]}}$$";
     // MathJax.Hub.Queue(["Typeset", MathJax.Hub])
   }
 }
 </script>
 
 <style scope lang="less">
+  @color:#333;
+  @colorLight:#42d29d;
+  @backgroundColor:#A5AA3F;
+  @borderColor:#ddd;
+  @gray:#93999F;
+  @time:0.3s;
   .container{
     display: flex;
     justify-content: space-between;
     width: 100%;
     overflow: hidden;
-    .content{
+    height:100%;
+    align-content:stretch;
+    .parent-dom{
       flex-grow: 1;
       overflow: auto;
-      .canvas{
+      height:100%;
+      border: 1px solid red;
+      .child-dom{
         width:2100px;
-        border: 1px solid red;
         height: 1450px;
       }
     }

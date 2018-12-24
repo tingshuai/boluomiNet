@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pageDraw">
     <nuxt/>
   </div>
 </template>
@@ -23,4 +23,8 @@ export default {
 @backgroundColor:#A5AA3F;
 @borderColor:#ddd;
 @gray:#93999F;
+.pageDraw{
+  height:100%;
+  width:100%;
+}
 </style>
