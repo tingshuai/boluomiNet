@@ -43,7 +43,8 @@ module.exports = {
   plugins: [
     '@/plugins/element-ui',
     {src:'@/plugins/mathjax',ssr:false},
-    {src:'@/plugins/vuescroll',ssr:true}
+    {src:'@/plugins/vuescroll',ssr:true},
+    {src:'@/plugins/printJs',ssr:false}
   ],
 
   /*

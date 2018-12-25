@@ -6,10 +6,11 @@ Vue.use(vuescroll,{
   ops: {
     vuescroll:{
         mode:"slide",
+        zooming:false
     },
     rail:{
         background:"",
-        size:"15px"
+        size:"15px",
     },
     bar:{
         keepShow:true,
