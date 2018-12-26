@@ -6,6 +6,7 @@
               <li><nuxt-link class="link" to="/course">课程</nuxt-link></li>
               <li><nuxt-link class="link" to="/test">试题</nuxt-link></li>
               <li><nuxt-link class="link" to="/addTestPaper">出题</nuxt-link></li>
+              <li><nuxt-link class="link" to="/svgEdit">作图</nuxt-link></li>
           </ul>
       </section>
       <section class="right navBar">
