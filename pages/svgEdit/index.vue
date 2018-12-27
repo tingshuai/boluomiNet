@@ -1,29 +1,28 @@
 <template>
   <section class="container">
-    <div class="top">
-
-    </div>
+    <top></top>
     <div class="bottom">
-      <section class="left">
-        <ul>
-          <li><i class="iconfont icon-xuanze"></i></li>
-          <li><i class="iconfont icon-xuanze"></i></li>
-        </ul>
-      </section>
-      <section class="center"></section>
-      <section class="right"></section>
+      <left></left>
+      <center></center>
+      <right></right>
     </div>
   </section>
 </template>
 
 <script>
 import '@/static/api/home'
+import top from '~/components/svgEditTop.vue'
+import left from '~/components/svgEditLeft.vue'
+import right from '~/components/svgEditRight.vue'
+import center from '~/components/svgEditCenter.vue'
+
 import axios from 'axios'
 import { VueMathjax } from 'vue-mathjax'
 export default {
   layout:"draw",
   components: {
     'vue-mathjax': VueMathjax,
+    top,left,right,center
   },  
   async asyncData({ $axios }) {
 
@@ -68,25 +67,14 @@ export default {
           height: 100%;
           display: flex;
           flex-direction: column;
-          .top{
-            height: 30px;
+          background-color: #505050;
+          &:hover{
+            
           }
           .bottom{
             flex-grow: 1;
             display: flex;
             justify-content: space-between;
-            .left{
-              width: 100px;
-              border: 1px solid @borderColor;              
-            }
-            .center{
-              flex-grow: 1;
-              border: 1px solid @borderColor;
-            }
-            .right{
-              width: 150px;
-              border: 1px solid @borderColor;
-            }
           }
       }
   }
