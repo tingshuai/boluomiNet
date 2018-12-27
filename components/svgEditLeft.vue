@@ -9,8 +9,9 @@
           </li>&thinsp;
           <li class="item" title="线性工具 L" @contextmenu.prevent="contextmenu" @click="actMe" data-type="xiantiao" :class="{ 'act': selType == 'xiantiao' }">
               <i class="iconfont icon-xiantiao"></i>
-              <ul class="contextMenu">
-                  <li><i class="block"></i><i class="iconfont icon-xiantiao"></i> <span>折线</span><span class="key">L</span></li>
+              <ul class="contextMenu" v-show="selType == 'xiantiao'">
+                  <li><i class="block"></i><i class="iconfont icon-xiantiao"></i> <span>直线</span><span class="key">L</span></li>
+                  <li><i class="block"></i><i class="iconfont icon--xuxian"></i> <span>虚线</span><span class="key">L</span></li>
                   <li><i class="block"></i><i class="iconfont icon-zhexiantu"></i> <span>折线</span><span class="key">L</span></li>
                   <li><i class="block"></i><i class="iconfont icon-zhexian"></i> <span>折线</span><span class="key">L</span></li>
               </ul>
@@ -23,6 +24,10 @@
           </li>&thinsp;
           <li class="item" title="矩形工具 M" @contextmenu.prevent="contextmenu" @click="actMe" data-type="juxing1" :class="{ 'act': selType == 'juxing1' }">
               <i class="iconfont icon-juxing1"></i>
+              <ul class="contextMenu" v-show="selType == 'juxing1'">
+                  <li><i class="block"></i><i class="iconfont icon-juxing1"></i><span>实线</span><span class="key">M</span></li>
+                  <li><i class="block"></i><i class="iconfont icon-xuxian"></i><span>虚线</span><span class="key">M</span></li>
+              </ul>              
           </li>&thinsp;
           <li class="item" title="椭圆工具 O" @contextmenu.prevent="contextmenu" @click="actMe" data-type="tuoyuanxing" :class="{ 'act': selType == 'tuoyuanxing' }">
               <i class="iconfont icon-tuoyuanxing"></i>
@@ -85,9 +90,16 @@ export default {
           margin: 1.5px 0;    
           position: relative;
           &.item{
-              .iconfont{
-                  font-size: 22px;
-                  color: #c1c1c1;
+              >.iconfont{
+                font-size: 22px;
+                display: inline-block;
+                color: #c1c1c1;
+                height: 100%;
+                width: 30px;
+                &:hover{
+                    background-color: #808080;
+                    box-shadow: #333 0 0 2px 1px;
+                }                
               }
               .contextMenu{
                   width:150px;
@@ -110,6 +122,9 @@ export default {
                       justify-content: space-between;
                       align-items: center;
                       flex-basis: 20px;
+                      &:hover{
+                          cursor: default;
+                      }
                       .block{
                          width: 4px;
                          height: 4px;
@@ -131,13 +146,11 @@ export default {
                       }
                   }
               }
-              &:hover{
-                  background-color: #808080;
-                  box-shadow: #333 0 0 2px 1px;
-              }
               &.act{
-                  box-shadow: #232323 0px 0px 2px 2px inset;
-                  background-color: #333333;
+                  >.iconfont{
+                      box-shadow: #232323 0px 0px 2px 2px inset;
+                      background-color: #333333;
+                  }
               }
           }
       }
