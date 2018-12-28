@@ -1,6 +1,13 @@
 <template>
     <section class="right">
-      <div class="history"></div>
+      <div class="history">
+        <section class="header">
+          
+        </section>
+        <ul>
+          <li></li>
+        </ul>
+      </div>
       <div class="layer"></div>
     </section>
 </template>
