@@ -2,7 +2,7 @@
   <section class="container">
     <top></top>
     <div class="bottom">
-      <left></left>
+      <left ref="left"></left>
       <center></center>
       <right></right>
     </div>
@@ -42,6 +42,13 @@ export default {
   mounted(){
     this.formula =  "$$\\ce{\\frac{[Hg^2+][Hg]}{[co2^2+]}}$$";
     // MathJax.Hub.Queue(["Typeset", MathJax.Hub])
+    let _this = this;
+    document.addEventListener('click', (e)=> {
+      _this.$refs.left.hid();
+    })
+    document.addEventListener('contextmenu', (e)=> {
+      e.preventDefault();
+    })
   },
   computed:{
 

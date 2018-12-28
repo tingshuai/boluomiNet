@@ -1,5 +1,8 @@
 <template>
-      <section class="right"></section>
+    <section class="right">
+      <div class="history"></div>
+      <div class="layer"></div>
+    </section>
 </template>
 <script>
 export default {
@@ -28,6 +31,12 @@ export default {
 @borderColor:#ddd;
 @gray:#93999F;
 .right{
-  width: 150px;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  .history,.layer{
+    flex-grow: 1;
+    background-color: #333;
+  }
 }
 </style>

@@ -1,43 +1,13 @@
 <template>
       <section class="left">
         <ul>
-          <li class="item" title="移动工具 A" @contextmenu.prevent="contextmenu" @click="actMe" data-type="xuanze" :class="{ 'act': selType == 'xuanze' }">
-              <i class="iconfont icon-xuanze"></i>
-          </li>&thinsp;
-          <li class="item" title="文字工具 T" @contextmenu.prevent="contextmenu" @click="actMe" data-type="wenzi" :class="{ 'act': selType == 'wenzi' }">
-              <i class="iconfont icon-wenzi"></i>
-          </li>&thinsp;
-          <li class="item" title="线性工具 L" @contextmenu.prevent="contextmenu" @click="actMe" data-type="xiantiao" :class="{ 'act': selType == 'xiantiao' }">
-              <i class="iconfont icon-xiantiao"></i>
-              <ul class="contextMenu" v-show="selType == 'xiantiao'">
-                  <li><i class="block"></i><i class="iconfont icon-xiantiao"></i> <span>直线</span><span class="key">L</span></li>
-                  <li><i class="block"></i><i class="iconfont icon--xuxian"></i> <span>虚线</span><span class="key">L</span></li>
-                  <li><i class="block"></i><i class="iconfont icon-zhexiantu"></i> <span>折线</span><span class="key">L</span></li>
-                  <li><i class="block"></i><i class="iconfont icon-zhexian"></i> <span>折线</span><span class="key">L</span></li>
+          <li class="item" v-for="(item,index) in barList" :key="index" :title="item.title" @contextmenu.prevent="contextmenu" :data-index="index" :data-item="item" @click="actMe" :class="{ 'act':'' }">
+              <i :class="['icon-' + item.icon,{'act': item.act}]" class="iconfont"></i>
+              <span class="triangle" v-if="item.children.length"></span>
+              <ul class="contextMenu" v-show="item.showChild && item.children.length != 0">
+                  <li v-for="(it,i) in item.children" :data-parentindex="index" :data-parentItem="item" @click.stop="actChild" :data-index="i" :data-item="it"><i class="block" :style="{'opacity': it.act ? 1 : 0 }"></i><i class="iconfont" :class="['icon-'+it.icon]"></i> <span>{{ it.name }}</span><span class="key">{{ it.key }}</span></li>
               </ul>
-          </li>&thinsp;
-          <li class="item" title="钢笔工具 P" @contextmenu.prevent="contextmenu" @click="actMe" data-type="icon-test3" :class="{ 'act': selType == 'icon-test3' }">
-              <i class="iconfont icon-icon-test3"></i>
-          </li>&thinsp;
-          <li class="item" title="画笔工具 B" @contextmenu.prevent="contextmenu" @click="actMe" data-type="bi1" :class="{ 'act': selType == 'bi1' }">
-              <i class="iconfont icon-bi1"></i>
-          </li>&thinsp;
-          <li class="item" title="矩形工具 M" @contextmenu.prevent="contextmenu" @click="actMe" data-type="juxing1" :class="{ 'act': selType == 'juxing1' }">
-              <i class="iconfont icon-juxing1"></i>
-              <ul class="contextMenu" v-show="selType == 'juxing1'">
-                  <li><i class="block"></i><i class="iconfont icon-juxing1"></i><span>实线</span><span class="key">M</span></li>
-                  <li><i class="block"></i><i class="iconfont icon-xuxian"></i><span>虚线</span><span class="key">M</span></li>
-              </ul>              
-          </li>&thinsp;
-          <li class="item" title="椭圆工具 O" @contextmenu.prevent="contextmenu" @click="actMe" data-type="tuoyuanxing" :class="{ 'act': selType == 'tuoyuanxing' }">
-              <i class="iconfont icon-tuoyuanxing"></i>
-          </li>&thinsp;
-          <li class="item" title="橡皮擦 E" @contextmenu.prevent="contextmenu" @click="actMe" data-type="xiangpi" :class="{ 'act': selType == 'xiangpi' }">
-              <i class="iconfont icon-xiangpi"></i>
-          </li>&thinsp;
-          <li class="item" title="色板 C" @contextmenu.prevent="contextmenu" @click="actMe" data-type="yanse1" :class="{ 'act': selType == 'yanse1' }">
-              <i class="iconfont icon-yanse1"></i>
-          </li>&thinsp;
+          </li>
           <li></li>
           <li></li>
         </ul>
@@ -50,19 +20,143 @@ export default {
   },  
   data () {
     return {
-      selType:"xuanze"    
+      barList:[
+          {
+              icon:"xuanze",
+              title:"移动工具 A",
+              children:[],
+              act:true,
+              showChild:false
+          },
+          {
+              icon:"wenzi",
+              title:"文字工具 T",
+              showChild:false,
+              act:false,
+              children:[]
+          },
+          {
+              icon:"xiantiao",
+              title:"线性工具 L",
+              showChild:false,
+              act:false,
+              children:[
+                  {
+                      icon:"xiantiao",
+                      name:"直线",
+                      key:"L",
+                      act:true
+                  },
+                  {
+                      icon:"-xuxian",
+                      name:"虚线",
+                      key:"L",
+                      act:false
+                  },
+                  {
+                      icon:"zhexiantu",
+                      name:"折线",
+                      key:"L",
+                      act:false
+                  },
+                  {
+                      icon:"zhexian",
+                      name:"折线",
+                      key:"L",
+                      act:false
+                  }                      
+              ]
+          },
+          {
+              icon:"icon-test3",
+              title:"钢笔工具 P",
+              showChild:false,
+              act:false,
+              children:[]
+          },  
+          {
+              icon:"bi1",
+              title:"画笔工具 B",
+              showChild:false,
+              act:false,
+              children:[]
+          },   
+          {
+              icon:"juxing1",
+              title:"矩形工具 M",
+              showChild:false,
+              act:false,
+              children:[
+                  {
+                      icon:"juxing1",
+                      name:"实线",
+                      key:"M",
+                      act:true
+                  },
+                  {
+                      icon:"juxing",
+                      name:"虚线",
+                      key:"M",
+                      act:false
+                  }                                    
+              ]
+          },    
+          {
+              icon:"tuoyuanxing",
+              title:"椭圆工具 O",
+              showChild:false,
+              act:false,
+              children:[]
+          },  
+          {
+              icon:"xiangpi",
+              title:"橡皮擦 E",
+              showChild:false,
+              act:false,
+              children:[]
+          },    
+          {
+              icon:"yanse1",
+              title:"色板 C",
+              showChild:false,
+              act:false,
+              children:[]
+          }
+      ]
     }
   },
   created(){
 
   },
+  mounted(){
+
+  },
   methods:{
+      hid(){
+          this.barList.forEach((item,i,arr) => {
+              item.showChild = false;
+          });
+      },
       actMe(e){
           let _dataSet = e.currentTarget.dataset;
-          this.selType = _dataSet.type;
+          this.barList.forEach((item,i,arr) => {
+              item.act = false;
+          });
+          this.barList[ _dataSet.index ].act = true;
       },
-      contextmenu (e) {
-        console.log('click:' , e)
+      actChild(e){
+          let _dataSet = e.currentTarget.dataset;
+          this.barList[ _dataSet.parentindex ].children.forEach((item,i,arr)=>{
+              item.act = false;
+          })
+          this.barList[ _dataSet.parentindex ].children[ _dataSet.index ].act = true;
+          this.barList[ _dataSet.parentindex ].icon = this.barList[ _dataSet.parentindex ].children[ _dataSet.index ].icon;
+          this.barList[ _dataSet.parentindex ].showChild = false;
+      },
+      contextmenu(e) {
+        let _dataSet = e.currentTarget.dataset;
+        this.actMe(e);
+        this.barList[ _dataSet.index ].showChild = true;
       }
   }
 }
@@ -87,7 +181,7 @@ export default {
           text-align: center;
           line-height: 23px;
           border-radius: 3px;
-          margin: 1.5px 0;    
+          margin: 1.5px 1px;    
           position: relative;
           &.item{
               >.iconfont{
@@ -96,10 +190,15 @@ export default {
                 color: #c1c1c1;
                 height: 100%;
                 width: 30px;
+                border-radius: 4px;
                 &:hover{
                     background-color: #808080;
                     box-shadow: #333 0 0 2px 1px;
-                }                
+                }  
+                &.act{
+                    box-shadow: #232323 0px 0px 2px 2px inset!important;
+                    background-color: #333333!important;
+                }                              
               }
               .contextMenu{
                   width:150px;
@@ -146,17 +245,20 @@ export default {
                       }
                   }
               }
-              &.act{
-                  >.iconfont{
-                      box-shadow: #232323 0px 0px 2px 2px inset;
-                      background-color: #333333;
-                  }
-              }
           }
       }
   }      
   .vue-contextmenu-listWrapper{
       display: none;
   }     
+}
+span.triangle{
+    border-width: 0 2px 2px;
+    border-style: solid;
+    border-color: transparent transparent #c1c1c1;
+    position: absolute;
+    bottom: 1px;
+    right: 0px;
+    transform: rotate(135deg);
 }
 </style>
