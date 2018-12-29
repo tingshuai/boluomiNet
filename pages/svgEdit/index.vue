@@ -61,7 +61,7 @@ export default {
 }
 </script>
 
-<style scope lang="less">
+<style scoped lang="less">
   @color:#333;
   @colorLight:#42d29d;
   @backgroundColor:#A5AA3F;

@@ -52,7 +52,6 @@ export default {
           border-radius: 7px;
           overflow: hidden;
           box-shadow:#dcdcdc 0 0 1px 2px;
-          height: 100%;
       }
       .txt{
         font-size: 12px;
