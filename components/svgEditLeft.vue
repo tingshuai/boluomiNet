@@ -131,6 +131,9 @@ export default {
   mounted(){
 
   },
+  watch:{
+
+  },
   methods:{
       hid(){
           this.barList.forEach((item,i,arr) => {
@@ -143,6 +146,7 @@ export default {
               item.act = false;
           });
           this.barList[ _dataSet.index ].act = true;
+          this.$emit( "selTool", this.barList[ _dataSet.index ].icon );
       },
       actChild(e){
           let _dataSet = e.currentTarget.dataset;
@@ -152,6 +156,7 @@ export default {
           this.barList[ _dataSet.parentindex ].children[ _dataSet.index ].act = true;
           this.barList[ _dataSet.parentindex ].icon = this.barList[ _dataSet.parentindex ].children[ _dataSet.index ].icon;
           this.barList[ _dataSet.parentindex ].showChild = false;
+          this.$emit( "selTool", this.barList[ _dataSet.parentindex ].icon );
       },
       contextmenu(e) {
         let _dataSet = e.currentTarget.dataset;

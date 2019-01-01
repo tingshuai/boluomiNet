@@ -25,9 +25,7 @@ export default {
 
   },
   methods:{
-      drag(e){
-          console.log(e);
-      }
+     
   }
 }
 </script>

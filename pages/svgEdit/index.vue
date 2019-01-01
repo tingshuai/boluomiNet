@@ -2,8 +2,8 @@
   <section class="container">
     <top></top>
     <div class="bottom">
-      <left ref="left"></left>
-      <center></center>
+      <left ref="left" @selTool="selTool"></left>
+      <center ref="center" :sel-type="selType"></center>
       <right></right>
     </div>
   </section>
@@ -30,8 +30,7 @@ export default {
   data () {
     return {
       formula: "",
-      boxShadow:"",
-      msg: 'Welcome to Your Vue.js App',
+      selType: "",
       ops:{
         
       }
@@ -46,6 +45,9 @@ export default {
     document.addEventListener('click', (e)=> {
       _this.$refs.left.hid();
     })
+    document.addEventListener('mouseup', (e)=> {
+      _this.$refs.center.timer = false;
+    })
     document.addEventListener('contextmenu', (e)=> {
       e.preventDefault();
     })
@@ -56,6 +58,9 @@ export default {
   methods:{
     handleScroll(vertical, horizontal, nativeEvent){
     
+    },
+    selTool(type){
+      this.selType = type;
     }
   }
 }
