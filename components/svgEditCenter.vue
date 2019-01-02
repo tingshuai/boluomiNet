@@ -4,9 +4,10 @@
       </section>
 </template>
 <script>
-let Svg;
+let Svg,$;
 if (process.client) {
   let Snap = require('imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js')
+  $ = require("jquery");
   Svg = Snap('#svg')
 }
 export default {
@@ -38,34 +39,49 @@ export default {
   },
   watch:{
     selType(n,o){
-      Svg.selectAll(".svgItem").forEach((ele,i,arr)=>{
+      Svg.selectAll(".gSvgItem").forEach((ele,i,arr)=>{
           ele.undrag();
       })
       this.drawType = n;
       if( n == "xuanze" ){
         this.bindDrag();
       }
+    },
+    layer:{
+      handler(n,o){
+        console.log(this.layer);
+      },
+      deep:true
     }
   },
   methods:{
-      active(){//聚焦出现蚂蚁线.......
-        Svg.selectAll(".svgItem").forEach((ele,i,arr)=>{
-            ele.drag();
-        });
+      antAni(){//蚂蚁线动画
+        let _lineLength = Svg.select(`#ant${this.actLayerId}`).getTotalLength();
+        let ani = ()=>{
+          Snap.animate(0, _lineLength*150, (val)=>{
+            Svg.select(`#ant${this.actLayerId}`).attr({
+              strokeDashoffset:val,
+            });
+          },_lineLength*20000,()=>{
+            setTimeout(ani,_lineLength*20000)
+          });
+        }
+        ani();
+      },
+      removeAnt(){
+        Svg.selectAll('.antBorder').forEach((val,i,arr)=>{
+          val.remove();
+        })
+      },
+      clickSvgItem(e){
+        Svg.selectAll('.svgItem').forEach((val,i,arr)=>{
+          val.remove();
+        })        
       },
       bindDrag(){
-        Svg.selectAll(".svgItem").forEach((ele,i,arr)=>{
-            ele.click((e)=>{
-              let _dataset = e.currentTarget.dataset;
-              let _box = Svg.select(`#${_dataset.id}`).getBBox();
-              console.log(JSON.stringify(_box));
-              Svg.paper.path(_box.path.toString()).attr({
-                  stroke: "#000",
-                  strokeWidth: 5,
-                  class:"antLines"
-              });
-            });
-        })
+        Svg.selectAll(".gSvgItem").forEach((ele,i,arr)=>{
+            ele.drag();
+        });
       },
       mousemove(e){
         this.coordinateOver = [ e.offsetX,e.offsetY ];
@@ -84,7 +100,7 @@ export default {
       },
       addLayer(_time){
         this.layer.push({
-          name:"图层",
+          name:"图层" + (this.layer.length + 1),
           id:_time
         })
       },
@@ -99,14 +115,28 @@ export default {
           }
           case "xiantiao":{//线段
             if( this.timer ){
-              Svg.paper.line( this.coordinateDown[0],this.coordinateDown[1],this.coordinateDown[0],this.coordinateDown[1] ).attr({
+              let _line = Svg.paper.line( this.coordinateDown[0],this.coordinateDown[1],this.coordinateDown[0],this.coordinateDown[1] ).attr({
                   stroke: "#000",
                   strokeWidth: 5,
                   class:"svgItem",
                   id:'id'+_time,
-                  "data-id":'id'+_time
+                  'data-id':_time
               });
-              this.active();
+              let line = `M${this.coordinateDown[0]},${this.coordinateDown[1]}`
+              this.removeAnt();
+              let _box = Svg.paper.path().attr({
+                  stroke: "#333",
+                  strokeWidth: 1,
+                  strokeDasharray:"2 2",
+                  strokeDashoffset:0,
+                  id:`ant${_time}`,
+                  class:"antBorder"
+              });
+              Svg.paper.g(_line,_box).attr({
+                  fill:"none",
+                  class:"gSvgItem",
+                  id:'gid'+_time
+              })
               this.addLayer( _time );
             }
             break;
@@ -148,6 +178,11 @@ export default {
               x2:this.coordinateOver[0],
               y2:this.coordinateOver[1]
             });
+            let _lineBox = Svg.select(`#id${this.actLayerId}`).getBBox();
+            let _line = `M${_lineBox.x} ${_lineBox.y}V${_lineBox.y2}H${_lineBox.x2}V${_lineBox.y}Z`;
+            Svg.select(`#ant${this.actLayerId}`).attr({
+              d:_line
+            });//更新蚂蚁线范围
             break;
           }
           case "icon-test3":{//钢笔工具.....
@@ -189,6 +224,16 @@ export default {
   justify-content: center;
   align-items: center;
   .svg{
+    .actItem{
+      .gSvgItem.antBorder{
+        opacity: 1;
+      }
+    }
+    .gSvgItem{
+      .antBorder{
+        opacity: 0;
+      }
+    }
     :hover{
 
     }
