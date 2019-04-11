@@ -263,12 +263,6 @@ export default {
 </script>
 
 <style scoped lang="less">
-@color:#333;
-@colorLight:#42d29d;
-@backgroundColor:#A5AA3F;
-@borderColor:#ddd;
-@gray:#93999F;
-@time:0.3s;
 .container{
 
 }

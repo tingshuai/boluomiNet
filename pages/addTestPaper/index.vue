@@ -38,6 +38,9 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       ops:{
         
+      },
+      testContent:{//试卷内容......
+
       }
     }
   },
@@ -59,12 +62,6 @@ export default {
 </script>
 
 <style scope lang="less">
-  @color:#333;
-  @colorLight:#42d29d;
-  @backgroundColor:#A5AA3F;
-  @borderColor:#ddd;
-  @gray:#93999F;
-  @time:0.3s;
   @media all{  
     .container{
       display: flex;

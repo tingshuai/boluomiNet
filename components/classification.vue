@@ -68,9 +68,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@color:#333;
-@colorLight:#42d29d;
-@backgroundColor:#A5AA3F;
 .part{
   display: flex;
   justify-content: space-between;

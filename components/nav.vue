@@ -6,7 +6,7 @@
               <li><nuxt-link class="link" to="/course">课程</nuxt-link></li>
               <li><nuxt-link class="link" to="/test">试题</nuxt-link></li>
               <li><nuxt-link class="link" to="/addTestPaper">出题</nuxt-link></li>
-              <li><nuxt-link class="link" to="/svgEdit">作图</nuxt-link></li>
+              <li><nuxt-link class="link" to="/">作图</nuxt-link></li>
           </ul>
       </section>
       <section class="right navBar">
@@ -37,11 +37,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@color:#333;
-@colorLight:#42d29d;
-@backgroundColor:#A5AA3F;
-@borderColor:#ddd;
-@time:0.3s;
+  
   .navigater{
     display: flex;
     justify-content: space-between;
