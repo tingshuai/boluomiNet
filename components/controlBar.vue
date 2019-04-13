@@ -115,6 +115,7 @@ export default {
     left: 0;
     width: 100%;
     padding-bottom: 20px;
+    transition: transform 0.3s;
     &:hover{
       .iconfont{
         color: @colorLight;
