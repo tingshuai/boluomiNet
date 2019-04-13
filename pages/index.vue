@@ -7,7 +7,7 @@
         <aside class="item act">最热</aside>
       </section>
       <ul class="course">
-        <li class="courseList" v-for="( item,index) in filterList" v-bind:key="item.id">
+        <li class="courseList" v-for="( item,index ) in filterList" v-bind:key="item.id">
           <aside class="left">
             <figure>
               <img :src="item.headImg" width="350" height="234" />
@@ -263,12 +263,6 @@ export default {
 </script>
 
 <style scoped lang="less">
-@color:#333;
-@colorLight:#42d29d;
-@backgroundColor:#A5AA3F;
-@borderColor:#ddd;
-@gray:#93999F;
-@time:0.3s;
 .container{
 
 }

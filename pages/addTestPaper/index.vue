@@ -18,7 +18,7 @@
 <script>
 import '@/static/api/home'
 import sealingLine from '~/components/sealingLine.vue'
-import controlBar from '~/components/controlBar.vue'
+import controlBar from '~/components/testPaper/controlBar.vue'
 import testBody from '~/components/testBody.vue'
 import axios from 'axios'
 import { VueMathjax } from 'vue-mathjax'
@@ -37,6 +37,9 @@ export default {
       boxShadow:"",
       msg: 'Welcome to Your Vue.js App',
       ops:{
+        
+      },
+      testContent:{//试卷内容......
         
       }
     }
@@ -59,12 +62,6 @@ export default {
 </script>
 
 <style scope lang="less">
-  @color:#333;
-  @colorLight:#42d29d;
-  @backgroundColor:#A5AA3F;
-  @borderColor:#ddd;
-  @gray:#93999F;
-  @time:0.3s;
   @media all{  
     .container{
       display: flex;

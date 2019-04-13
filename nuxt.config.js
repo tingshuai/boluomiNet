@@ -1,5 +1,5 @@
 const pkg = require('./package')
-
+const path = require('path') 
 module.exports = {
   mode: 'universal',
 
@@ -52,8 +52,9 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
-  ],
+    '@nuxtjs/axios',
+    '@nuxtjs/style-resources'
+  ], 
   /*
   ** Axios module configuration
   */
@@ -81,6 +82,8 @@ module.exports = {
     extend(config, ctx) {
       
     },
-
+    styleResources: {
+      less: './static/css/public.less'
+    }
   }
 }

@@ -66,11 +66,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@color:#333;
-@colorLight:#42d29d;
-@backgroundColor:#A5AA3F;
-@borderColor:#ddd;
-@time:0.3s;
 .controlBar{
   flex-basis: 100px;
   box-shadow: #333 -7px 0px 30px 5px;
