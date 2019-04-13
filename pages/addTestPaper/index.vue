@@ -18,7 +18,7 @@
 <script>
 import '@/static/api/home'
 import sealingLine from '~/components/sealingLine.vue'
-import controlBar from '~/components/controlBar.vue'
+import controlBar from '~/components/testPaper/controlBar.vue'
 import testBody from '~/components/testBody.vue'
 import axios from 'axios'
 import { VueMathjax } from 'vue-mathjax'
@@ -40,7 +40,7 @@ export default {
         
       },
       testContent:{//试卷内容......
-
+        
       }
     }
   },

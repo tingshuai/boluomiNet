@@ -5,7 +5,7 @@ import 'vuescroll/dist/vuescroll.css'
 Vue.use(vuescroll,{
   ops: {
     vuescroll:{
-        mode:"slide",
+        mode:"native",
         zooming:false
     },
     rail:{
