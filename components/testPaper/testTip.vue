@@ -31,7 +31,7 @@ export default {
 
 <style scoped lang="less">
   .testMsg{
-      text-align: center;
+      text-align: left;
       min-width: 100%;
       min-height: 150px;
       .h4{
@@ -42,9 +42,6 @@ export default {
       }
   }
   .textMsg{
-      font-size: 15px;
-      line-height: 25px;
-      border: none;
-      width: 100%!important;
+
   }
 </style>

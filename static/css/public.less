@@ -4,3 +4,13 @@
 @borderColor:#ddd;
 @gray:#93999F;
 @time:0.3s;
+.hIcon{
+    &:hover{
+      .iconfont{
+        color: @colorLight!important;
+      }
+    }
+    .iconfont{
+        transition: all @time;
+    }
+}

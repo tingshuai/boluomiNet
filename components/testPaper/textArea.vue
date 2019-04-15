@@ -1,5 +1,11 @@
 <template>
-    <textarea v-model="textVal" unselectable="on" :rows="rows" :readonly="status" :autoHeight="autoHeight" class="textMsg" @input="inputing" @blur="blur" @dblclick="dblclick"></textarea>
+    <div class="textarea">
+        <div class="controlbar">
+            <i class="iconfont icon-bianjishijuanmingcheng"></i>
+            <i class="iconfont icon-dakai"></i>
+        </div>
+        <textarea v-model="textVal" :rows="rows" :readonly="status" :autoHeight="autoHeight" class="textMsg" @input="inputing" @blur="blur" @dblclick="dblclick"></textarea>
+    </div>
 </template>
 <script>
 export default {
@@ -47,6 +53,9 @@ export default {
 
 <style scoped lang="less">
     .textMsg{
-        user-select:none;
+      font-size: 15px;
+      line-height: 25px;
+      border: none;
+      width: 100%!important;
     }
 </style>

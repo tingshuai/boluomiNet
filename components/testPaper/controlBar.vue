@@ -8,38 +8,38 @@
       </div>   
       <div class="line"></div>      
       <ul>
-        <li title="设置">
+        <li class="hIcon" title="设置">
           <i class="iconfont icon-shezhi"></i>
           <span class="title">设置</span>
         </li>
-        <li title="模板">
+        <li class="hIcon" title="模板">
           <i class="iconfont icon-moban"></i>
           <span class="title">模板</span>
         </li>
-        <li title="科目">
+        <li class="hIcon" title="科目">
           <i class="iconfont icon-kemumoren"></i>
           <span class="title">科目</span>
         </li>
-        <li title="作图">
+        <li class="hIcon" title="作图">
           <i class="iconfont icon-huatugongju1"></i>
           <span class="title">作图</span>
         </li>
-        <li title="帮助">
+        <li class="hIcon" title="帮助">
           <i class="iconfont icon-bangzhu"></i>
           <span class="title">帮助</span>
         </li>
         <div class="line"></div>      
-        <li title="保存">
+        <li class="hIcon" title="保存">
           <i class="iconfont icon-baocun"></i>
           <span class="title">保存</span>
         </li>
-        <li title="退出">
+        <li class="hIcon" title="退出">
           <i class="iconfont icon-tuichu"></i>
           <span class="title">退出</span>
         </li>
       </ul>
       <div class="line"></div>      
-      <div class="bar" @click="toggleBar">
+      <div class="bar hIcon" @click="toggleBar">
           <i class="iconfont icon-shouqi"></i>
       </div>
     </section>
@@ -111,11 +111,6 @@ export default {
     width: 100%;
     padding-bottom: 20px;
     transition: transform 0.3s;
-    &:hover{
-      .iconfont{
-        color: @colorLight;
-      }
-    }
     .iconfont{
       font-size: 30px;
       color: @color;
@@ -132,9 +127,6 @@ export default {
       text-align: center;
       &:hover{
         cursor: pointer;
-        .iconfont{
-          color: @colorLight;
-        }
         .title{
           color: @colorLight;
         }
@@ -185,7 +177,7 @@ export default {
     }
   }
 }
-.iconfont,.figure,.icon,.title,.name,.controlBar{
-  transition: all @time;
+.figure,.title,.name,.controlBar{
+    transition: all @time;
 }
 </style>
