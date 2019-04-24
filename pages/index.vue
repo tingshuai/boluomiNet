@@ -7,7 +7,7 @@
         <aside class="item act">最热</aside>
       </section>
       <ul class="course">
-        <li class="courseList" v-for="( item,index ) in filterList" v-bind:key="item.id">
+        <li class="courseList" v-for="( item,index ) in filterList" v-bind:key="index">
           <aside class="left">
             <figure>
               <img :src="item.headImg" width="350" height="234" />

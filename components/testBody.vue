@@ -3,8 +3,7 @@
         <section class="part testTipWraper">
             <test-tip></test-tip>
         </section>
-        <!-- <section class="part part2"></section> -->
-        <section class="part choiceQuestionWraper">
+        <section class="part choiceQuestionWraper"><!--选择题-->
             <choice-question></choice-question>
         </section>
     </div>

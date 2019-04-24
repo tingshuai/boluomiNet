@@ -1,46 +1,34 @@
 <template>
     <section class="controlBar" :class="{ 'shink' : ishink}">
-      <div class="head">
-          <figure class="figure">
-            <img src="~/assets/img/head.jpg" alt="">
-          </figure>
-          <span class="name">挺帅</span>
-      </div>   
-      <div class="line"></div>      
-      <ul>
-        <li class="hIcon" title="设置">
-          <i class="iconfont icon-shezhi"></i>
-          <span class="title">设置</span>
-        </li>
-        <li class="hIcon" title="模板">
-          <i class="iconfont icon-moban"></i>
-          <span class="title">模板</span>
-        </li>
-        <li class="hIcon" title="科目">
-          <i class="iconfont icon-kemumoren"></i>
-          <span class="title">科目</span>
-        </li>
-        <li class="hIcon" title="作图">
-          <i class="iconfont icon-huatugongju1"></i>
-          <span class="title">作图</span>
-        </li>
-        <li class="hIcon" title="帮助">
-          <i class="iconfont icon-bangzhu"></i>
-          <span class="title">帮助</span>
-        </li>
-        <div class="line"></div>      
-        <li class="hIcon" title="保存">
-          <i class="iconfont icon-baocun"></i>
-          <span class="title">保存</span>
-        </li>
-        <li class="hIcon" title="退出">
-          <i class="iconfont icon-tuichu"></i>
-          <span class="title">退出</span>
-        </li>
-      </ul>
-      <div class="line"></div>      
-      <div class="bar hIcon" @click="toggleBar">
-          <i class="iconfont icon-shouqi"></i>
+      <div class="menu">
+          <div class="head">
+              <figure class="figure">
+                <img src="~/assets/img/head.jpg" alt="">
+              </figure>
+              <span class="name">挺帅</span>
+          </div>   
+          <div class="line"></div>      
+          <ul id="menuList">
+            <li v-for="(item,index) in menuData" :key="index" :class="{'curItem':curIndex == index}" class="hIcon" :title="item.name" @click="menuClick(item)">
+              <i class="iconfont" :class="item.icon"></i>
+              <span class="title">{{ item.name }}</span>
+            </li>
+          </ul>
+          <div class="line"></div>      
+          <div class="bar hIcon" @click="toggleBar">
+              <i class="iconfont icon-shouqi"></i>
+          </div>
+      </div>
+
+      <div class="childMenu" :class="curIndex == null ? '' : 'shrinkChildren'">
+        <section class="childItem">
+          <!--设置项获得焦点.....-->
+          <el-form class="setting">
+            <el-form-item label="密封线:">
+              <el-switch v-model="isOpen"></el-switch>
+            </el-form-item>
+          </el-form>
+        </section>
       </div>
     </section>
 </template>
@@ -48,132 +36,210 @@
 export default {
   components: {
     
-  },  
+  },
   data () {
     return {
-      ishink:false
+      ishink:false,
+      curIndex:null,
+      isOpen:true,//是否显示密封线.....
+      menuData:[
+        {
+          icon:'icon-shezhi',
+          name:"设置",
+          value:0
+        },
+        {
+          icon:'icon-moban',
+          name:"模板",
+          value:1
+        }, 
+        {
+          icon:'icon-huatugongju1',
+          name:"科目",
+          value:2
+        },    
+        {
+          icon:'icon-kemumoren',
+          name:"绘图",
+          value:3
+        },  
+        {
+          icon:'icon-bangzhu',
+          name:"帮助",
+          value:4
+        },  
+        {
+          icon:'icon-baocun',
+          name:"保存",
+          value:5
+        },  
+        {
+          icon:'icon-tuichu',
+          name:"退出",
+          value:6
+        }                                              
+      ]
     }
   },
   created(){
 
   },
+  mounted(){
+    let that = this;
+    document.addEventListener('click',(e)=>{
+      let _ele = document.getElementById('menuList');
+      if( !_ele.contains(e.target) ){
+        that.curIndex = null;
+      }
+    })
+  },
   methods:{
     toggleBar(){
       this.ishink = !this.ishink;
+    },
+    menuClick(menu){
+      this.curIndex = menu.value;
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
+@menuWidth:100px;
 .controlBar{
-  flex-basis: 100px;
+  z-index: 1000;
+  display: flex;
+  flex: auto;
+  justify-content: flex-start;
   box-shadow: #333 -7px 0px 30px 5px;
-  flex-shrink: 0;
   position: relative;
-  z-index: 1000;      
-  .line{
-    border-bottom: 1px solid @borderColor;
-    width: 80%;
-    margin: 20px auto;
-    opacity: 0.8;
-  }  
-  .head{
-    height: 90px;
-    width: auto;
-    text-align: center;
-    margin: 20px 0;
-    .figure{
-      height: 65px;
-      width: 65px;
+  .menu{
+    padding: 0 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;  
+    z-index: 100;
+    height: 100%;
+    flex: 1 1 85px;
+    .line{
+      border-bottom: 1.4px solid @borderColor;
+      width: 80%;
       margin: 0 auto;
-      box-shadow: rgba(66, 210, 157, 0.3) 0 0 3px 2px;
-      border-radius: 7px;
-      overflow: hidden;
-      img{
-        height: 100%;
-        width: auto;
+      opacity: 0.6;
+    }  
+    .head{
+      width: auto;
+      text-align: center;
+      margin: 10px 0;
+      .figure{
+        height: 65px;
+        width: 65px;
+        margin: 0 auto;
+        box-shadow: rgba(66, 210, 157, 0.3) 0 0 3px 2px;
+        border-radius: 7px;
+        overflow: hidden;
+        img{
+          height: 100%;
+          width: auto;
+        }
+      }
+      .name{
+        font-size: 12px;
+        width: 26px;
+        overflow: hidden;
+        white-space: nowrap;
       }
     }
-    .name{
-      font-size: 12px;
-      width: 26px;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-  }
-  .bar{
-    text-align: center;
-    font-size: 22px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding-bottom: 20px;
-    transition: transform 0.3s;
-    .iconfont{
-      font-size: 30px;
-      color: @color;
-    }
-  }
-  ul{
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0;
-    li{
-      font-size: 14px;
-      height: 40px;
-      line-height: 40px;
+    .bar{
       text-align: center;
-      &:hover{
-        cursor: pointer;
+      font-size: 22px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding-bottom: 20px;
+      transition: transform 0.3s;
+      .iconfont{
+        font-size: 30px;
+        color: @color;
+      }
+    }
+    ul{
+      display: flex;
+      flex-direction: column;
+      margin: 20px 0;
+      li{
+        font-size: 14px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        &:hover{
+          cursor: pointer;
+          .title{
+            color: @colorLight;
+          }
+        }
+        .icon,.iconfont{
+          font-size: 20px;
+          line-height: 29px;
+          vertical-align: middle;
+          color: #888;
+        }
         .title{
+          color: @color;
+          display: inline-block;
+          height: 100%;
+          font-size: 14px;
+          vertical-align: middle;
+          overflow: hidden;
+          width: 35px;
+        }
+      }
+      li.curItem{
+        .iconfont,.title{
           color: @colorLight;
         }
       }
-      .icon,.iconfont{
-        font-size: 20px;
-        line-height: 29px;
-        vertical-align: middle;
-        color: #888;
-      }
-      .title{
-        color: @color;
-        display: inline-block;
-        height: 100%;
-        font-size: 16px;
-        vertical-align: middle;
-        overflow: hidden;
-        width: 35px;
-      }
     }
+  }
+  .childMenu{
+    flex: 1 1 250px;
+    height: 100%;
+    background-color: rgba(255,255,255,0.8);
+    z-index: 0;
+    overflow: hidden;
   }
 }
 .shink{
-  flex-basis: 50px;
-  .head{
-    .figure{
-      width: 40px;
-      height: 40px;
+  .menu{
+    flex: 1 1 50px;
+    .head{
+      .figure{
+        width: 40px;
+        height: 40px;
+      }
+      .name{
+        display: inline-block;
+        font-size: 0;
+        opacity: 0;
+      }
     }
-    .name{
-      width: 0;
-      display: inline-block;
+    .bar{
+      .iconfont{
+        transform: rotate(90deg);
+        display: inline-block;
+        font-size: 22px;
+      }
     }
-  }
-  .bar{
-    .iconfont{
-      transform: rotate(90deg);
-      display: inline-block;
-      font-size: 22px;
-    }
-  }
-  ul>li{
-    .icon,.iconfont{
-      font-size: 28px;
-    }
-    .title{
-      width: 0;
+    ul>li{
+      .icon,.iconfont{
+        font-size: 28px;
+      }
+      .title{
+        width: 0;
+        font-size: 0;
+        opacity: 0;
+      }
     }
   }
 }
