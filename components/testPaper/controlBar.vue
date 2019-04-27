@@ -1,5 +1,5 @@
 <template>
-    <section class="controlBar" :class="{ 'shink' : ishink}">
+    <section id="menuBar" class="controlBar" :class="{ 'shink' : ishink}">
       <div class="menu">
           <div class="head">
               <figure class="figure">
@@ -21,7 +21,7 @@
       </div>
 
       <div class="childMenu" :class="curIndex == null ? '' : 'shrinkChildren'">
-        <section class="childItem">
+        <section class="childItem" v-show="curIndex == 0">
           <!--设置项获得焦点.....-->
           <el-form class="setting">
             <el-form-item label="密封线:">
@@ -87,7 +87,7 @@ export default {
   mounted(){
     let that = this;
     document.addEventListener('click',(e)=>{
-      let _ele = document.getElementById('menuList');
+      let _ele = document.getElementById('menuBar');
       if( !_ele.contains(e.target) ){
         that.curIndex = null;
       }
@@ -98,7 +98,11 @@ export default {
       this.ishink = !this.ishink;
     },
     menuClick(menu){
-      this.curIndex = menu.value;
+      if( menu.value == this.curIndex ){//已经是焦点元素了
+        this.curIndex = null;
+      }else{
+        this.curIndex = menu.value;
+      }
     }
   }
 }
@@ -203,11 +207,16 @@ export default {
     }
   }
   .childMenu{
-    flex: 1 1 250px;
+    width: 0;
     height: 100%;
     background-color: rgba(255,255,255,0.8);
     z-index: 0;
     overflow: hidden;
+    border-left: 1px solid #f9f9f9;
+    transition: width @time;
+  }
+  .childMenu.shrinkChildren{
+    width: 200px;
   }
 }
 .shink{
